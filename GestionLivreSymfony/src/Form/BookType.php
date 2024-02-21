@@ -2,10 +2,14 @@
 
 namespace App\Form;
 
+use App\Entity\Author;
 use App\Entity\Book;
 use Doctrine\DBAL\Types\SmallIntType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Console\Color;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -42,17 +46,25 @@ class BookType extends AbstractType
                     ]),
                     new LessThan([
                     'value' => 200,
-                    'message' => 'En dessous de 200 $ '
+                    'message' => 'En dessous de 200 $ ',
                 ])
-                ]
-                ,
-                'attr' => [
-                    'step' => 0.01,
                 ]
                 ,
                 
 
             ])
+            
+            ->add('author',EntityType::class,[
+                 'label' => 'Choisir l\'auteur:',
+                'class' => Author::class    ,
+               
+                'choice_label'=> function (Author $author) {
+                    return $author->getName();
+                },
+                
+            
+                
+                ])
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
         ;
     }

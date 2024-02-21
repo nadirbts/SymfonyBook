@@ -38,6 +38,9 @@
 				Prix:{{ book.prix }}</li>
 
 
+			<li>				Auteur:{{ book.author.name }}</li>
+
+
 			<a href="{{path('bookId', {id: book.id ,})}}">
 				<button>Voir les details du livre</button>
 			</a>
