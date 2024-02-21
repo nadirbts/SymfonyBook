@@ -18,8 +18,8 @@
 	</style>
 
 	<div class="example-wrapper">
-
-		<h3>Les Livres sont:</h3>
+	<fieldset>
+		<legend><h3>Les Details de '{{ bookById.titre }}' sont:</h3></legend>
 		<ul>
 			<li>ID:{{ bookById.id }}</li>
 			<li>ISBN:{{ bookById.isbn }}</li>
@@ -29,6 +29,7 @@
 			<li>Description:{{ bookById.description }}</li>
 			<li>Prix:{{ bookById.prix }}</li>
 		</ul>
+		</fieldset>
 	</div>
 {% endblock %}
 
