@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Hello LivreController!
+{% endblock %}
+
+{% block body %}
+	<link href="{{asset('css/style.css')}}" rel="stylesheet"/>
+
+	<div class="example-wrapper">
+
+
+		<fieldset>
+			<legend>
+				<h1>Formulaire
+					{{ controller_name }}</h1>
+			</legend>
+
+			{{form_start(form)}}
+
+			<strong>{{field_label(form.isbn)}}</strong>
+			{{form_widget(form.isbn)}}
+			<br>
+			<strong>{{field_label(form.titre)}}</strong>
+			{{form_widget(form.titre)}}
+			<br>
+			<strong>{{field_label(form.resumer)}}</strong>
+			{{form_widget(form.resumer)}}
+			<br>
+			<strong>{{field_label(form.description)}}</strong>
+			{{form_widget(form.description)}}
+			<br>
+			<strong>{{field_label(form.prix)}}</strong>
+			{{form_widget(form.prix, { 'type':'number' })}}
+
+			<span class="error">
+				{{ form_errors(form.prix) }}
+			</span>
+			<br><br>
+			{{form_widget(form.save)}}
+			{{form_end(form)}}
+
+
+		</fieldset>
+	</div>
+{% endblock %}
+
