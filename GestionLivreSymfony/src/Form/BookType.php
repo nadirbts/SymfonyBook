@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\Editor;
 use Doctrine\DBAL\Types\SmallIntType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Console\Color;
@@ -50,6 +51,11 @@ class BookType extends AbstractType
                 ])
                 ]
                 ,
+                'attr' => [
+                    'step' => 0.01,
+                ]
+                
+                ,
                 
 
             ])
@@ -61,9 +67,24 @@ class BookType extends AbstractType
                 'choice_label'=> function (Author $author) {
                     return $author->getName();
                 },
-                
-            
-                
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                ],
+                ])
+
+
+            ->add('editor',EntityType::class,[
+                 'label' => 'Choisir l\'editeur:',
+                'class' => Editor::class    ,
+               
+                'choice_label'=> function (Editor $editor) {
+                    return $editor->getName();
+                },
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                ],
                 ])
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
         ;

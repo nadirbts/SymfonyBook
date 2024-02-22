@@ -40,8 +40,6 @@ class LivreController extends AbstractController
     #[Route('/ajoutlivre', name: 'livre',methods: ['GET','POST']) ]
     public function ajoutPerso(EntityManagerInterface $entityManager,Request $request): Response
     {
-        
-        
         $book=new Book();        
         $form= $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
